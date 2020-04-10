@@ -100,7 +100,7 @@ round(p_level, 2)
 <br>  
 
 ##### 2) parallel test
-$$x_1 - x_2, x_2 - x_3, ..., x_{p-1} - x_p,\;p = the\,number\,of\,variables$$
+$x_1 - x_2, x_2 - x_3, ..., x_{p-1} - x_p,\;p = the\,number\,of\,variables$
 
 
 ```r
@@ -111,3 +111,9 @@ round(p_parallel, 2)
 ## x1-x2 x2-x3 x3-x4 x4-x5 x5-x6 
 ##   0.0   0.0   0.0   0.0   0.5
 ```
+<br>  
+<br>  
+
+### Reference  
+##### paper : Rencher, Alvin C. "A review of “Methods of Multivariate Analysis, ”." (2005): 1083-1085.  
+##### profileR : https://mran.microsoft.com/snapshot/2017-01-20/web/packages/profileR/vignettes/jss_profileR.pdf  

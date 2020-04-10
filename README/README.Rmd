@@ -89,7 +89,7 @@ round(p_level, 2)
 <br>  
 
 ##### 2) parallel test
-$$x_1 - x_2, x_2 - x_3, ..., x_{p-1} - x_p,\;p = the\,number\,of\,variables$$
+$x_1 - x_2, x_2 - x_3, ..., x_{p-1} - x_p,\;p = the\,number\,of\,variables$
 ```{r, echo=FALSE}
 # parallel
 p3_1_t <- reshape2::dcast(p3_1, id + group ~ variable, value.var =  'value')
@@ -115,3 +115,9 @@ p_parallel <- unlist(p_parallel)
 ```{r}
 round(p_parallel, 2)
 ```
+<br>  
+<br>  
+
+### Reference  
+##### paper : Rencher, Alvin C. "A review of “Methods of Multivariate Analysis, ”." (2005): 1083-1085.  
+##### profileR : https://mran.microsoft.com/snapshot/2017-01-20/web/packages/profileR/vignettes/jss_profileR.pdf  
