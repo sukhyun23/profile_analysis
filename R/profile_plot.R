@@ -1,3 +1,10 @@
+# data <- profile_sample3
+# group <- 'group'
+# variable <- 'variable'
+# value <- 'value'
+# id <- 'id'
+# alpha <- 0.3
+
 profile_plot <- function(
   data, group, variable, value, id, alpha = 0.1, dens = F
 ) {
@@ -50,57 +57,39 @@ profile_plot <- function(
   }
   
   # density
-  if (dens) {
-    for (i in 1:length(data_list)) {
-      dens_list <- tapply(
-        data_list[[i]]$value, data_list[[i]]$variable, 
-        density, 
-        simplify = F
-      )
-      minmax_list <- tapply(
-        data_list[[i]]$value, data_list[[i]]$variable, 
-        function(x) c(min(x), max(x)), simplify = F
-      )  
-      for (j in 1:length(dens_list)) {
-        x <- dens_list[[j]]$y
-        y <- dens_list[[j]]$x
-        x <- tpa::minmax_norm(x, j, (j+0.5))
-        y <- tpa::minmax_norm(y, minmax_list[[j]][1], minmax_list[[j]][2])
-        lines(x, y, col = color[i])
-        polygon(x, y, col = color_alpha[i], border = F)
-      }
+  density2 <- function(x) {
+    if (length(x) == 1) {
+      return(list(x=NA, y=NA))
+    } else {
+      return(density(x))
     }
   }
+  suppressWarnings(
+    if (dens) {
+      for (i in 1:length(data_list)) {
+        dens_list <- tapply(
+          data_list[[i]]$value, data_list[[i]]$variable, 
+          density2, 
+          simplify = F
+        )
+        minmax_list <- tapply(
+          data_list[[i]]$value, data_list[[i]]$variable, 
+          function(x) c(min(x), max(x)), simplify = F
+        )  
+        for (j in 1:length(dens_list)) {
+          x <- dens_list[[j]]$y
+          y <- dens_list[[j]]$x
+          x <- tpa::minmax_norm(x, j, (j+0.5))
+          y <- tpa::minmax_norm(y, minmax_list[[j]][1], minmax_list[[j]][2])
+          lines(x, y, col = color[i])
+          polygon(x, y, col = color_alpha[i], border = F)
+        }
+      }
+    }
+  )
   
   # legend
-  legend('topright', legend = unique(data$group), pch = 19, col = color)
+  legend('topleft', legend = unique(data$group), pch = 19, col = color)
   invisible(NULL)
 }
-
-# source(/home/sukhyun/profile_analysis/R/simul_data.R)
-source('/home/sukhyun/profile_analysis/R/simul_data.R')
-
-
-profile_plot(profile_sample1, 'group', 'variable', 'value', 'id', dens = T)
-profile_sample1_t <- reshape2::dcast(
-  profile_sample1, id + group ~ variable, value.var =  'value'
-)
-result1 <- profileR::pbg(profile_sample1_t[, 3:8], profile_sample1_t$group)
-summary(result1)
-
-
-profile_plot(profile_sample2, 'group', 'variable', 'value', 'id', dens = T)
-profile_sample2_t <- reshape2::dcast(
-  profile_sample2, id + group ~ variable, value.var =  'value'
-)
-result2 <- profileR::pbg(profile_sample2_t[, 3:8], profile_sample2_t$group)
-summary(result2)
-
-
-profile_plot(profile_sample3, 'group', 'variable', 'value', 'id', dens = T)
-profile_sample3_t <- reshape2::dcast(
-  profile_sample3, id + group ~ variable, value.var =  'value'
-)
-result3 <- profileR::pbg(profile_sample3_t[, 3:8], profile_sample3_t$group)
-summary(result3)
 
