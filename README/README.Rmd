@@ -89,8 +89,8 @@ round(p_level, 2)
 <br>  
 
 ##### 2) parallel test  
-
-$x_1 - x_2, x_2 - x_3, ..., x_{p-1} - x_p,\;p = the\,number\,of\,variables$
+  
+$x_1 - x_2, x_2 - x_3, ..., x_{p-1} - x_p,\;p = the\,number\,of\,variables$  
 ```{r, echo=FALSE}
 # parallel
 p3_1_t <- reshape2::dcast(p3_1, id + group ~ variable, value.var =  'value')
