@@ -2,7 +2,7 @@
 
 
 ### Example 1
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
 ```r
 summary(profile_result1)
@@ -36,7 +36,7 @@ summary(profile_result1)
 <br>  
 
 ### Example 2
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
 ```r
 summary(profile_result2)
@@ -78,14 +78,14 @@ x <- rnorm(10000)
 pvalue(x, 1.96, plot = T)
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
 ```
 ## [1] 0.02552841
 ```
 <br>  
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 
 ##### 1) level test
 
@@ -100,7 +100,7 @@ round(p_level, 2)
 <br>  
 
 ##### 2) parallel test
-$x_1 - x_2, x_2 - x_3, ..., x_{p-1} - x_p,\;p = the\,number\,of\,variables$
+$$x_1 - x_2, x_2 - x_3, ..., x_{p-1} - x_p,\;p = the\,number\,of\,variables$$
 
 
 ```r
