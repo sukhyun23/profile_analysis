@@ -6,7 +6,8 @@
 # alpha <- 0.3
 
 profile_plot <- function(
-  data, group, variable, value, id, alpha = 0.1, dens = F
+  data, group, variable, value, id, alpha = 0.1, dens = F, palettes = 'Set1',
+  color = NULL, main = NULL
 ) {
   linef <- function (data, variable, value, col = 'black', lwd = 1) {
     lines(data[[variable]], data[[value]], col = col, lwd = lwd)
@@ -23,10 +24,12 @@ profile_plot <- function(
   data_list <- split(data, data[[group]])
   
   # lines
-  color <- suppressWarnings(
-    RColorBrewer::brewer.pal(length(data_list), 'Set1')
-  )
-  color <- color[1:length(data_list)]
+  if (is.null(color)) {
+    color <- suppressWarnings(
+      RColorBrewer::brewer.pal(length(data_list), palettes)
+    )
+    color <- color[1:length(data_list)]
+  }
   
   color_alpha <- c()
   plot(
@@ -36,7 +39,8 @@ profile_plot <- function(
   )
   axis(1, labels = unique(x_label), at = unique(data[[variable]]))
   for (i in 1:length(data_list)) {
-    rgb_value <- col2rgb(color[i])
+    # rgb_value <- col2rgb(color[i])
+    rgb_value <- col2rgb('grey70')
     color_alpha[i] <- 
       rgb(rgb_value[1], rgb_value[2], rgb_value[3], max = 255, 
           alpha = (100 - (1-alpha)*100) * 255 / 100)
@@ -87,9 +91,10 @@ profile_plot <- function(
       }
     }
   )
-  
+
   # legend
   legend('topleft', legend = unique(data$group), pch = 19, col = color)
+  title(main)
   invisible(NULL)
 }
 

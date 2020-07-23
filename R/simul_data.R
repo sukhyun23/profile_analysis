@@ -1,6 +1,6 @@
 # 1. sample ---------------------------------------------------------------
 set.seed(1)
-n <- 30
+n <- 100
 id <- paste('id', 1:n, sep = '_')
 data1 <- data.frame(
   id = id, 
@@ -69,27 +69,86 @@ n <- 100
 id <- paste('id', 1:n, sep = '_')
 data1 <- data.frame(
   id = id, 
-  group = rep('group1', n),
-  x1 = rnorm(n, 0, 1),
-  x2 = rnorm(n, 3, 1),
-  x3 = rnorm(n, 1, 1),
-  x4 = rnorm(n, 6, 1),
-  x5 = rnorm(n, 3, 1),
-  x6 = rnorm(n, 5, 1)
+  group = rep('sample', n),
+  x1 = rnorm(n, 0, 0.5),
+  x2 = rnorm(n, 3, 0.6),
+  x3 = rnorm(n, 1, 0.6),
+  x4 = rnorm(n, 2, 0.3),
+  x5 = rnorm(n, 3, 0.4),
+  x6 = rnorm(n, 1, 0.5)
 )
 data2 <- data.frame(
   id = paste('id_', n+1, sep = ''),
-  group = c('group2'),
+  group = c('test'),
   x1 = c(3.5),
-  x2 = c(0.5),
-  x3 = c(6.5),
-  x4 = c(1.5),
-  x5 = c(3.5),
-  x6 = c(5.5)
+  x2 = c(6),
+  x3 = c(4.5),
+  x4 = c(4),
+  x5 = c(6),
+  x6 = c(4)
 )
 
 profile_sample3 <- rbind(data1, data2)
 profile_sample3 <- reshape2::melt(profile_sample3, c('id', 'group'))
+
+
+# 4. small sample -----------------------------------------------------------
+# sample data
+set.seed(1)
+n <- 100
+id <- paste('id', 1:n, sep = '_')
+data1 <- data.frame(
+  id = id, 
+  group = rep('sample', n),
+  x1 = rnorm(n, 0, 0.5),
+  x2 = rnorm(n, 3, 0.6),
+  x3 = rnorm(n, 1, 0.6),
+  x4 = rnorm(n, 2, 0.3),
+  x5 = rnorm(n, 3, 0.4),
+  x6 = rnorm(n, 1, 0.5)
+)
+data2 <- data.frame(
+  id = paste('id_', n+1, sep = ''),
+  group = c('test'),
+  x1 = c(0.2),
+  x2 = c(2),
+  x3 = c(3),
+  x4 = c(2),
+  x5 = c(2.5),
+  x6 = c(1.2)
+)
+
+profile_sample4 <- rbind(data1, data2)
+profile_sample4 <- reshape2::melt(profile_sample4, c('id', 'group'))
+
+# 5. small sample -----------------------------------------------------------
+# sample data
+set.seed(1)
+n <- 100
+id <- paste('id', 1:n, sep = '_')
+data1 <- data.frame(
+  id = id, 
+  group = rep('sample', n),
+  x1 = rnorm(n, 0, 0.5),
+  x2 = rnorm(n, 3, 0.6),
+  x3 = rnorm(n, 1, 0.6),
+  x4 = rnorm(n, 2, 0.3),
+  x5 = rnorm(n, 3, 0.4),
+  x6 = rnorm(n, 1, 0.5)
+)
+data2 <- data.frame(
+  id = paste('id_', n+1, sep = ''),
+  group = c('test'),
+  x1 = c(0.2),
+  x2 = c(3.1),
+  x3 = c(0.9),
+  x4 = c(2.1),
+  x5 = c(2.5),
+  x6 = c(1.2)
+)
+
+profile_sample5 <- rbind(data1, data2)
+profile_sample5 <- reshape2::melt(profile_sample5, c('id', 'group'))
 
 rm(data1, data2)
 # dt <- rbind(dt_tr, dt_te)
